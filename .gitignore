@@ -6,3 +6,7 @@ logs/
 
 # Profiler output
 *.out*
+
+# Release artifacts
+release/
+
