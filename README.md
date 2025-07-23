@@ -43,6 +43,35 @@ A modern, feature-rich C++ project template designed for robustness and ease of 
     ```
     The executable will be created at `build/main`.
 
+## Using this Template for Your Own Project
+
+To use this repository as a template for your own C++ project, follow these steps:
+
+1.  **Fork the repository:** Go to the GitHub page of this template and click the "Fork" button. This will create a copy of the repository under your GitHub account.
+2.  **Clone your forked repository:**
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/YOUR_FORKED_REPO_NAME.git
+    cd YOUR_FORKED_REPO_NAME
+    ```
+3.  **Rename your project:**
+    *   **Update `CMakeLists.txt`:** Change the `project()` name in the top-level `CMakeLists.txt` file to your desired project name.
+    *   **Rename executable (optional):** If you want your main executable to have a different name than `main`, you can change `add_executable(main ...)` in `CMakeLists.txt` to `add_executable(YOUR_PROJECT_NAME ...)` and also update any references to `build/main` in the README.
+4.  **Customize your code:**
+    *   Modify `main.cc`, `include/process.h`, `src/process.cc`, and `include/utils/logger.h`, `src/utils/logger.cc` to implement your project's specific logic.
+    *   Add new source files and headers as needed, and update `CMakeLists.txt` to include them in your build.
+5.  **Update README.md:** Customize this `README.md` file with information specific to your project, including its purpose, features, and usage instructions.
+6.  **Remove `.git` history (optional):** If you want to start with a clean Git history for your new project, you can remove the existing `.git` directory and reinitialize Git:
+    ```bash
+    rm -rf .git
+    git init
+    git add .
+    git commit -m "Initial commit for my new project"
+    ```
+    Then, link it to a new empty repository on GitHub.
+7.  **Set up GitHub Actions (optional):** If you forked the repository, the GitHub Actions workflow (`.github/workflows/ci.yml`) should work automatically. If you created a new repository, you might need to copy the workflow file.
+
+Now you have a new C++ project based on this template, ready for your development!
+
 ## Development Workflow
 
 This template provides a structured workflow for developing your C++ application.
