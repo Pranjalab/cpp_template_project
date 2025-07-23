@@ -1,8 +1,8 @@
 # C++ Project Template
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Pranjalab/cpp_template_project/ci.yml?branch=main)](https://github.com/Pranjalab/cpp_template_project/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Pranjalab/cpp_template_project)](https://github.com/Pranjalab/cpp_template_project/releases)
+[![build](https://github.com/Pranjalab/cpp_template_project/actions/workflows/ci.yml/badge.svg)](https://github.com/Pranjalab/cpp_template_project/actions/workflows/ci.yml)
+[![release](https://img.shields.io/github/v/release/Pranjalab/cpp_template_project)](https://github.com/Pranjalab/cpp_template_project/releases)
+[![license](https://img.shields.io/github/license/Pranjalab/cpp_template_project)](LICENSE)
 
 A modern, feature-rich C++ project template designed for robustness and ease of use. This template provides a complete development workflow, from building and testing to releasing, all powered by CMake.
 
