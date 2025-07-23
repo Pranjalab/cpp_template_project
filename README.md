@@ -1,114 +1,106 @@
-# C++ Template Project
+# C++ Project Template
 
-A minimal C++ starter project using CMake for building, gflags for command-line argument parsing, and a simple file logger.
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Pranjalab/cpp_template_project/ci.yml?branch=main)](https://github.com/Pranjalab/cpp_template_project/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Pranjalab/cpp_template_project)](https://github.com/Pranjalab/cpp_template_project/releases)
 
-## Overview
+A modern, feature-rich C++ project template designed for robustness and ease of use. This template provides a complete development workflow, from building and testing to releasing, all powered by CMake.
 
-This project provides a basic structure for a C++ application. It includes:
+## Features
 
-*   A `CMakeLists.txt` file that handles dependencies (like `gflags`) and builds the project.
-*   A `main.cc` that demonstrates how to parse command-line arguments.
-*   A simple `Process` class where you can add your core application logic.
-*   A `Logger` utility that writes logs to timestamped files.
-
-## Project Structure
-
-```
-cpp_template_project/
-├── CMakeLists.txt      # Build script for CMake
-├── README.md           # This file
-├── main.cc             # Main executable source
-├── include/            # Header files
-│   ├── process.h
-│   └── utils/
-│       └── logger.h
-├── src/                # Source files
-│   ├── process.cc
-│   └── utils/
-│       └── logger.cc
-└── build/              # Created by CMake, contains the executable
-└── logs/               # Created at runtime, contains log files
-```
+- **Modern C++:** Uses C++17 for modern language features.
+- **CMake Build System:** A powerful and flexible build system that handles dependencies and build configurations.
+- **Dependency Management:** Uses `FetchContent` to automatically download and manage dependencies like `gflags`.
+- **Command-Line Parsing:** Integrated with `gflags` for easy command-line argument parsing.
+- **Structured Logging:** A simple but effective logger that writes to timestamped files.
+- **Release Packaging:** CPack configuration is included to easily create distributable packages.
+- **Clear Project Structure:** A logical and scalable project structure.
 
 ## Getting Started
 
 ### Prerequisites
 
-*   A C++17 compatible compiler (like g++ or clang)
-*   CMake (version 3.16 or higher)
+- A C++17 compatible compiler (e.g., GCC, Clang, MSVC)
+- CMake (version 3.16 or higher)
+- Git
 
-### Building the Project
+### Installation
 
-1.  **Configure the project using CMake:** This will create a `build` directory and prepare the build environment. `gflags` will be downloaded automatically if not found.
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd <your-project-directory>
+    ```
+
+2.  **Configure the project:**
+    This will create a `build` directory and prepare the build environment.
     ```bash
     cmake -S . -B build
     ```
 
-2.  **Compile the code:**
+3.  **Compile the code:**
     ```bash
     cmake --build build -j
     ```
-    The `-j` flag enables parallel compilation, which can speed up the process.
+    The executable will be created at `build/main`.
 
-The executable will be created at `build/main`.
+## Development Workflow
 
-### Running the Application
+This template provides a structured workflow for developing your C++ application.
 
-You can run the application from the project root directory:
+### 1. Building your Algorithm
 
-```bash
-./build/main [FLAGS]
-```
+The core application logic resides in the `Process` class.
 
-**Command-line Flags:**
+- **`include/process.h`**: Header file for the `Process` class.
+- **`src/process.cc`**: Implementation of the `Process` class.
 
-*   `--message <string>`: An optional message to append to the "Hello World!" output.
-    *   Example: `./build/main --message "How are you?"`
-    *   Output: `Hello World! How are you?`
-*   `--name <string>`: The name of the pipeline, used for the log file name. Defaults to `pipeline`.
-    *   Example: `./build/main --name "my_test_run"`
-    *   This will create a log file like `logs/run_20250722_103000/my_test_run.log`
+Modify the `Process::run` method in `src/process.cc` to implement your main algorithm. You can add new classes and files as needed and update the `CMakeLists.txt` to include them in the build.
 
-If you run the executable without any flags, it will use the default values:
-```bash
-./build/main
-# Output: Hello World!
-```
+### 2. Building the Project
 
-## Customization
+To build the project, run the following commands from the project root:
 
-This project is designed to be a starting point. Here’s how you can adapt it:
+- **Debug Build (for development):**
+  ```bash
+  cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+  cmake --build build -j
+  ```
 
-*   **Add your application logic:** The core logic should go into the `Process::run` method in `src/process.cc`.
-*   **Add new command-line flags:** You can define new flags in `main.cc` using the `DEFINE_string`, `DEFINE_int32`, etc. macros from `gflags`.
-*   **Add new libraries:** To add new source files or link against other libraries, modify the `CMakeLists.txt` file. You can add new `add_library` or `add_executable` targets, and use `target_link_libraries` to link them together.
+- **Release Build (for performance):**
+  ```bash
+  cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+  cmake --build build -j
+  ```
 
-## Logging
+### 3. Testing the Project
 
-The application uses a simple logger that writes messages to a file.
+_(Note: This section is a placeholder. You can add your testing framework of choice, such as GTest, and add the necessary CMake configuration.)_
 
-*   Log files are created in the `logs/` directory.
-*   Each run creates a new subdirectory named `run_<timestamp>`, e.g., `logs/run_20250722_103000/`.
-*   The log file itself is named after the pipeline name (from the `--name` flag), e.g., `pipeline.log`.
+A robust testing setup is crucial for any project. We recommend using a testing framework like [Google Test](https://github.com/google/googletest).
 
-You can use the logger in your code by including `utils/logger.h` and calling the `info()` or `error()` methods.
+To add testing to this project, you would typically:
+1.  Add GTest as a dependency in `CMakeLists.txt` using `FetchContent`.
+2.  Create a `tests/` directory with your test files.
+3.  Add a `add_test` command in `CMakeLists.txt` to define your tests.
+4.  Run the tests using `ctest` from the `build` directory.
 
-## Releasing the Project
+### 4. Releasing the Package
 
-To create a release build and package it for distribution, follow these steps:
+When you are ready to release your project, you can create a distributable package.
 
-1.  **Configure the project for a release build:**
+1.  **Configure for Release:**
     ```bash
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
     ```
 
-2.  **Build the project:**
+2.  **Build the Project:**
     ```bash
     cmake --build build -j
     ```
 
-3.  **Package the project:**
-    This command will create a distributable archive (e.g., a `.tar.gz` file) in the `build/` directory.
+3.  **Create the Package:**
+    This will create a `.tar.gz` archive in the `build/` directory.
     ```bash
     cmake --build build --target package
     ```
@@ -119,3 +111,28 @@ To create a release build and package it for distribution, follow these steps:
     - Choose a tag version (e.g., `v1.0.0`).
     - Upload the generated package from the `build/` directory.
     - Publish the release.
+
+## Contributing
+
+Contributions are welcome! If you have a suggestion or find a bug, please open an issue or submit a pull request.
+
+### Pull Request Process
+
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/your-feature`).
+3.  Make your changes.
+4.  Commit your changes (`git commit -m 'Add some feature'`).
+5.  Push to the branch (`git push origin feature/your-feature`).
+6.  Open a pull request.
+
+## Contributors
+
+
+<a href="https://github.com/Pranjal-neo" align="center">
+  <img src="https://github.com/Pranjal-neo.png" alt="Pranjal" width="100" height="100" style="border-radius:50%;" />
+</a>  
+  
+**Pranjal Bhaskare** 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
