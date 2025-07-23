@@ -92,3 +92,30 @@ The application uses a simple logger that writes messages to a file.
 *   The log file itself is named after the pipeline name (from the `--name` flag), e.g., `pipeline.log`.
 
 You can use the logger in your code by including `utils/logger.h` and calling the `info()` or `error()` methods.
+
+## Releasing the Project
+
+To create a release build and package it for distribution, follow these steps:
+
+1.  **Configure the project for a release build:**
+    ```bash
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    ```
+
+2.  **Build the project:**
+    ```bash
+    cmake --build build -j
+    ```
+
+3.  **Package the project:**
+    This command will create a distributable archive (e.g., a `.tar.gz` file) in the `build/` directory.
+    ```bash
+    cmake --build build --target package
+    ```
+
+4.  **Create a GitHub Release:**
+    - Go to the "Releases" page of your GitHub repository.
+    - Click "Draft a new release".
+    - Choose a tag version (e.g., `v1.0.0`).
+    - Upload the generated package from the `build/` directory.
+    - Publish the release.

@@ -41,3 +41,14 @@ set_target_properties(main PROPERTIES
 # Optional install
 install(TARGETS main process logger)
 install(DIRECTORY include/ DESTINATION include)
+
+# ---- CPack configuration ----
+include(CPack)
+
+set(CPACK_GENERATOR "TGZ")
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A C++ template project")
+set(CPACK_PACKAGE_VENDOR "Gemini")
+set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${CPACK_PACKAGE_VERSION}-${CMAKE_SYSTEM_NAME}")
+set(CPACK_SET_DESTDIR ON)
