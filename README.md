@@ -43,6 +43,27 @@ A modern, feature-rich C++ project template designed for robustness and ease of 
     ```
     The executable will be created at `build/main`.
 
+    #### how to use:
+
+    --massage [string to add]
+      
+    --name: [pipeline name]
+
+    ```bash
+    (base) pranjal@server:~/cpp_template_project/build$ ./main --message "Thank you for using the template" --name "pipeline_name" 
+    > Hello World! Thank you for using the template
+    ```
+
+    Log files will be stored: ./cpp_template_project/build/logs/run_20250726_115134/pipline_name.log
+    
+
+    ```bash
+    [INFO] === Pipeline run started ===
+    [INFO] Output: Hello World! Thank you for using the template
+    [INFO] Total time (ms): 0
+    [INFO] === Pipeline run finished ===
+    ```
+
 ## Using this Template for Your Own Project
 
 To use this repository as a template for your own C++ project, follow these steps:
